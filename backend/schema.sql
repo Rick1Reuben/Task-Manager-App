@@ -4,5 +4,6 @@ CREATE TABLE tasks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT,
-    due_datetime DATETIME
+    due_datetime DATETIME,
+    completed BOOLEAN DEFAULT 0
 );
