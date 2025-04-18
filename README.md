@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# Task Manager App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a full-stack Task Manager application that allows users to manage their tasks efficiently. The application includes features like adding, editing, deleting, sorting tasks by due date, marking tasks as complete, and filtering tasks. It is built using **React** for the frontend and **Flask** with SQLite for the backend.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
+- Add new tasks with titles, descriptions, and due dates.
+- Edit existing tasks (except completed ones).
+- Delete tasks.
+- Mark tasks as complete or pending.
+- Sort tasks by due date.
+- Filter tasks based on their completion status.
+- Responsive design for mobile and desktop users.
+- Smooth UX enhancements like scrolling on edit and toast notifications.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
+Before running the application, ensure you have the following installed:
+1. **Node.js and npm** (for the frontend): Download from [Node.js Official Website](https://nodejs.org/).
+2. **Python** (for the backend): Download from [Python Official Website](https://www.python.org/).
+3. **pip**: Python package manager (comes with Python installation).
+4. **SQLite**: Already integrated with Python (no separate installation needed).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Frontend Setup**
+1. Open a terminal and navigate to the `frontend` directory:
+   ```bash
+   cd frontend
+Install the required npm packages:
 
-### `npm run build`
+bash
+npm install
+Start the frontend development server:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+bash
+npm start
+The frontend server will start, and you can access the app by navigating to http://localhost:3000 in your browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Backend Setup
+Open a terminal and navigate to the backend directory:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+bash
+cd backend
+Install the required Python packages using pip:
 
-### `npm run eject`
+bash
+pip install flask flask-cors
+Initialize the SQLite database:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Make sure the schema.sql file is in the backend directory.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Run the following command:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+bash
+flask --app app initdb
+This will create a tasks.db database using your schema.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Start the Flask backend server:
 
-## Learn More
+bash
+python app.py
+The backend server will start at http://localhost:5000.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Folder Structure
+Task-Manager-App/
+├── frontend/
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── App.css
+│   │   └── index.js
+│   ├── public/
+│   └── package.json
+├── backend/
+│   ├── app.py
+│   ├── tasks.db
+│   ├── schema.sql
+│   └── requirements.txt
+API Endpoints
+GET /tasks
+Retrieves all tasks.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Supports sorting by due date using the query parameter sort=due_date.
 
-### Code Splitting
+POST /tasks
+Adds a new task.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Requires JSON input with title, description, and optionally due_datetime.
 
-### Analyzing the Bundle Size
+PUT /tasks/<task_id>
+Updates an existing task.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Requires JSON input with updated fields (title, description, due_datetime, completed).
 
-### Making a Progressive Web App
+DELETE /tasks/<task_id>
+Deletes the task with the specified ID.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Common Issues
+Frontend
+react-toastify module not found:
 
-### Advanced Configuration
+Run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+bash
+npm install react-toastify
+Restart the development server:
 
-### Deployment
+bash
+npm start
+Backend
+flask or flask-cors module not found:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Run:
 
-### `npm run build` fails to minify
+bash
+pip install flask flask-cors
+Database not initialized:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Ensure schema.sql is in the backend directory.
+
+Run:
+
+bash
+flask --app app initdb
+Contributions
+Feel free to open issues and submit pull requests if you find bugs or want to contribute new features!
